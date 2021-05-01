@@ -3,10 +3,10 @@ package com.kabryxis.auriel.command
 import com.kabryxis.auriel.Auriel
 import discord4j.core.`object`.entity.Message
 
-class TextCommandHandler(val name: String, private val template: String) : CommandHandler {
+class TextCommandHandler(val name: String, val template: String) : CommandHandler {
 	
 	override fun handle(message: Message, arg: String) {
-		if (Auriel.DEBUG) println("handle for TextCommandHandler($name) was called")
+		Auriel.debug("handle for TextCommandHandler($name) was called")
 		message.channel.flatMap { it.createMessage(format(message, arg)) }.subscribe()
 	}
 	

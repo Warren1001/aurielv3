@@ -12,7 +12,7 @@ class SimpleCommandHandler(listener: Any, com: Com, val method: Method) :
 	}
 	
 	override fun handle(message: Message, arg: String) {
-		if (Auriel.DEBUG) println("handle called for ${javaClass.simpleName}(${name})")
+		Auriel.debug("handle called for ${javaClass.simpleName}(${name})")
 		method.invoke(listener, message, arg)
 	}
 	

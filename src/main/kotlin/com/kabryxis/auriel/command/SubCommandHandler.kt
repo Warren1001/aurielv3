@@ -10,13 +10,13 @@ class SubCommandHandler(listener: Any, com: Com) : AbstractCommandHandler(listen
 	init {
 		listener.javaClass.declaredMethods.filter { it.isAnnotationPresent(Com::class.java) }
 			.map { SimpleCommandHandler(listener, it.getAnnotation(Com::class.java), it) }.forEach {
-				if (Auriel.DEBUG) println("Constructed ${it.javaClass.simpleName}(${it.name}) for ${javaClass.simpleName}(${name})")
+				Auriel.debug("Constructed ${it.javaClass.simpleName}(${it.name}) for ${javaClass.simpleName}(${name})")
 				register(it)
 			}
 	}
 	
 	override fun handle(message: Message, arg: String) {
-		if (Auriel.DEBUG) println("handle called for ${javaClass.simpleName}(${name})")
+		Auriel.debug("handle called for ${javaClass.simpleName}(${name})")
 		val args = arg.split(" ", ignoreCase = true, limit = 2)
 		subCommands[args[0].toLowerCase()]?.handle(message, if (args.size > 1) args[1] else "")
 	}
