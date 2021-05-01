@@ -10,7 +10,6 @@ class TextCommandHandler(val name: String, val template: String) : CommandHandle
 		message.channel.flatMap { it.createMessage(format(message, arg)) }.subscribe()
 	}
 	
-	// a
 	private fun format(message: Message, arg: String) : String {
 		var msg = template;
 		if (message.author.isPresent) msg = msg.replace("{user}", message.author.get().mention)
