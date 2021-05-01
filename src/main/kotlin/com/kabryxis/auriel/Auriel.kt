@@ -25,8 +25,8 @@ fun main(args: Array<String>) {
 object Auriel {
 	
 	var DEBUG: Boolean = true
-	val timeFormat = DateTimeFormatter.ofPattern("HH:mm:ss:SS")
 	
+	private val timeFormat: DateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss:SS")
 	private val database: Database = Database()
 	
 	fun getDatabase() : Database {
