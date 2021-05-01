@@ -5,6 +5,7 @@ import discord4j.core.`object`.entity.Message
 
 class TextCommandHandler(val name: String, val template: String) : CommandHandler {
 	
+	
 	override fun handle(message: Message, arg: String) {
 		Auriel.debug("handle for TextCommandHandler($name) was called")
 		message.channel.flatMap { it.createMessage(format(message, arg)) }.subscribe()
