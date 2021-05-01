@@ -3,7 +3,7 @@ package com.kabryxis.auriel.command
 import com.kabryxis.auriel.Auriel
 import discord4j.core.`object`.entity.Message
 
-class SubCommandHandler(listener: Any, com: Com) : AbstractCommandHandler(listener, com, if (com.name.isBlank()) getProperClassName(listener.javaClass) else com.name) {
+class SubCommandHandler(listener: Any, com: Com) : AbstractCommandHandler(listener, com, com.name.ifBlank { getProperClassName(listener.javaClass) }) {
 	
 	private val subCommands: MutableMap<String, CommandHandler> = mutableMapOf()
 	
@@ -28,8 +28,8 @@ class SubCommandHandler(listener: Any, com: Com) : AbstractCommandHandler(listen
 	
 }
 
-fun getProperClassName(clazz: Class<Any>) : String {
+fun getProperClassName(clazz: Class<Any>): String {
 	var simpleName = clazz.simpleName.toLowerCase();
-	if(simpleName.endsWith("command", ignoreCase = true)) simpleName = simpleName.substring(0, simpleName.length - 7)
+	if (simpleName.endsWith("command", ignoreCase = true)) simpleName = simpleName.substring(0, simpleName.length - 7)
 	return simpleName
 }

@@ -4,6 +4,8 @@ import com.kabryxis.auriel.command.CommandManager
 import discord4j.core.DiscordClient
 import discord4j.core.event.domain.message.MessageCreateEvent
 import kotlinx.coroutines.reactor.mono
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 fun main(args: Array<String>) {
 	
@@ -23,6 +25,7 @@ fun main(args: Array<String>) {
 object Auriel {
 	
 	var DEBUG: Boolean = true
+	val timeFormat = DateTimeFormatter.ofPattern("HH:mm:ss:SS")
 	
 	private val database: Database = Database()
 	
@@ -31,7 +34,7 @@ object Auriel {
 	}
 	
 	fun debug(msg: String) {
-		if (DEBUG) println("${System.currentTimeMillis()} - $msg")
+		if (DEBUG) println("[${LocalDateTime.now().format(timeFormat)}] $msg")
 	}
 	
 }
